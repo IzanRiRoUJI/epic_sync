@@ -1,0 +1,18 @@
+{{with .Values.persistentVolume}}
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{.gcePdName}}
+  namespace: {{$.Values.serviceInfo.namespace}}
+  annotations:
+    volume.beta.kubernetes.io/storage-class: {{.name}}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 300Mi
+  volumeName: {{.name}}
+
+{{end}}

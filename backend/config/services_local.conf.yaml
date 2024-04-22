@@ -1,0 +1,23 @@
+context: "minikube"
+environment: "local"
+docker-client-version: "1.35"
+namespace: "default"
+image-name-includes-namespace: true
+replicas: 1
+workers: 10
+
+golang:
+  deployments:
+    - name: "services"
+      folder: "."
+      services:
+        - name: "server-internal"
+          port: 4545
+          container-port: 4545
+          no-clusterIP: true
+          type: "ClusterIP"
+        - name: "server-http-internal"
+          port: 4548
+          container-port: 4548
+          no-clusterIP: true
+          type: "ClusterIP"

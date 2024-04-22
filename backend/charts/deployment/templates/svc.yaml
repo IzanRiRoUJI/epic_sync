@@ -1,0 +1,34 @@
+{{range .Values.servicePorts}}
+{{if not .onlyDeployment}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Values.serviceInfo.namespace }}
+  labels:
+    app: {{ $.Values.serviceInfo.name }}
+    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    release: "{{ $.Release.Name }}"
+    heritage: "{{ $.Release.Service }}"
+spec:
+  {{ with .serviceType }}type: {{.}}{{end}}
+  {{ if .noClusterIP }}clusterIP: None{{end}}
+  ports:
+  - name: {{ $.Values.serviceInfo.name }}
+    port: {{ .port }}
+    {{if .serviceType}}{{if eq .serviceType "NodePort"}}nodePort: {{ .port }}{{end}}{{end}}
+    {{with .containerPort}}targetPort: {{.}}{{end}}
+    {{if .serviceProtocol}}{{if eq .serviceProtocol "UDP"}}protocol: UDP{{end}}{{end}}
+  {{if .externalIp}}
+  externalIPs:
+    - "{{.externalIp}}"
+  {{end}}
+  {{if .loadBalancerIp}}
+  loadBalancerIP: "{{.loadBalancerIp}}"
+  {{end}}
+  selector:
+    app: {{ $.Values.serviceInfo.name }}
+
+---
+{{end}}
+{{end}}

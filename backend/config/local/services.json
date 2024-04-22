@@ -1,0 +1,4 @@
+{
+  "db_config": "host=postgres-service.72horas user=postgres dbname=test password=passwd sslmode=disable",
+  "db": "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable"
+}

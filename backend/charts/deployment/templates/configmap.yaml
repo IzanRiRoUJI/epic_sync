@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.serviceInfo.name }}
+  namespace: {{ .Values.serviceInfo.namespace }}
+  labels:
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{ .Values.serviceInfo.name }}
+data:
+  config.json: |-
+    {{ .Files.Get .Values.configMapPath }}

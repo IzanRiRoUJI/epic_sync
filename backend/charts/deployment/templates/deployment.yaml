@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.serviceInfo.name }}
+  namespace: {{ .Values.serviceInfo.namespace }}
+  labels:
+    app: {{ .Values.serviceInfo.name }}
+    chart: {{ template "deployment.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.serviceInfo.name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.serviceInfo.name }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Values.serviceInfo.name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: config-{{ .Values.serviceInfo.name }}
+            mountPath: /config.json
+            subPath: config.json
+
+        {{with .Values.persistentVolume}}
+          - name: {{.name}}
+            mountPath: {{.mountPath}}
+        {{end}}
+
+        {{with .Values.secret}}
+          - name: secret-volume
+            mountPath: {{.mountPath}}
+        {{end}}
+
+        {{- with .Values.servicePorts}}
+          ports:
+            {{range .}}
+            - containerPort: {{.containerPort}}
+            {{end}}
+        {{- end}}
+         
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    
+      volumes:
+        - name: config-{{ .Values.serviceInfo.name }}
+          configMap:
+            name: {{ .Values.serviceInfo.name }}
+      
+      {{- with .Values.secret}}
+        - name: secret-volume
+          secret:
+            secretName: {{ .name }}
+      {{- end}}
+
+      {{with .Values.persistentVolume}}
+        - name: {{.name}}
+          persistentVolumeClaim:
+            claimName: {{.gcePdName}}
+        {{end}}
+      
+      {{- if .Values.scalewayImage }}
+      imagePullSecrets:
+        - name: registry-secret
+      {{- end}}

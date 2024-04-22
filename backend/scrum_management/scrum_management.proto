@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+option go_package = "../services/server";
+
+import "google/api/annotations.proto";
+
+enum CardCategory{
+    UNKNOWN_C = 0;
+    Roadmap = 1;
+    Proyectos = 2;
+    }
+
+enum CardPriority {
+    UNKNOWN_P = 0;
+    Alta = 1;
+    Media = 2;
+    Baja = 3;
+}
+
+enum CardState{
+    UNKNOWN_S = 0;
+    Pendiente = 1;
+    Proceso = 2;
+    Revisar = 3;
+    Listo = 4;
+}
+
+enum CardType{
+    UNKNOWN_T = 0;
+    Tarea = 1;
+    Historia = 2;
+    Error = 3;
+}
+enum CardBacklog{
+    UNKNOWN_B = 0;
+    True = 1;
+    False = 2;
+}
+
+message Card {
+    uint64 id = 1;
+    string title = 2;
+    string epic = 3;
+    uint64 id_user = 4;
+    CardCategory category = 5;
+    string datecreated= 6;
+    string description = 7 ;
+    CardPriority priority = 8;
+    CardState state = 9;
+    double storypoints = 10;
+    CardType type = 11;
+    CardBacklog backlog = 12;
+    repeated Label labels = 13;
+    repeated Comment comments = 14;
+}
+
+message Label {
+    uint64 id = 1;
+    string name = 2;
+}
+
+message Comment {
+    uint64 id = 1;
+    uint64 id_card = 2;
+    uint64 id_user = 3;
+    string date = 4;
+    string content= 5;
+    uint64 parent = 6;
+}
+
+message User {
+    uint64 id = 1;
+    string name = 2;
+    string email = 3;
+    string token = 4;
+    bool isAdmin= 5;
+}
+
+
+message addUserRequest {
+    string email = 1;
+}
+
+message addUserResult {
+    bool insertedEmail = 1;
+}
+
+
+message getCardsFiltered{
+    CardCategory category = 1;
+    CardPriority priority = 2;
+    CardState state = 3;
+    CardType type = 4;
+    CardBacklog backlog = 5;
+}
+
+message CardsList {
+    repeated Card cards = 1;
+}
+
+message AddCardRequest{
+    Card card = 1;
+}
+
+message AddCardResult{
+    bool insertedCard = 1;
+}
+
+message DeleteCardRequest{
+    uint64 id_card = 1;
+}
+
+message DeleteCardResult{
+    bool deletedCard = 1;
+}
+
+message UpdateCardRequest{
+    Card card = 1;
+}
+
+message UpdateCardResult{
+    bool updatedCard = 1;
+}
+
+
+service Server {
+    rpc AddUser (addUserRequest) returns (addUserResult){
+        option (google.api.http) = {
+            post: "/server/add_user"
+            body: "*"
+        };
+    }
+
+    rpc GetCards (getCardsFiltered) returns (CardsList) {
+        option (google.api.http) = {
+            post: "/server/get_cards"
+            body: "*"
+        };
+    }
+    rpc AddCard (AddCardRequest) returns (AddCardResult) {
+        option (google.api.http) = {
+            post: "/server/add_card"
+            body: "*"
+        };
+    }
+    rpc DeleteCard (DeleteCardRequest) returns (DeleteCardResult) {
+        option (google.api.http) = {
+            post: "/server/delete_card"
+            body: "*"
+        };
+    }
+    rpc UpdateCard (UpdateCardRequest) returns (UpdateCardResult) {
+        option (google.api.http) = {
+            post: "/server/update_card"
+            body: "*"
+        };
+    }
+
+    
+} 
