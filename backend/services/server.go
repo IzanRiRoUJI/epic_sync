@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	pb "bitbucket.org/nayar/scrum_management/backend/scrum_management/scrum_management.v1"
+	pb "github.com/IzanriroUJI/epic_sync/backend/epic_sync/epic_sync.v1"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	_ "github.com/lib/pq"

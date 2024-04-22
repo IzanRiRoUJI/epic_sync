@@ -1,4 +1,5 @@
-module bitbucket.org/nayar/scrum_management/backend
+module github.com/IzanRiRoUJI/epic_sync/backend
+
 
 go 1.20
 
@@ -7,7 +8,7 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/lib/pq v1.10.9
-	google.golang.org/genproto/googleapis/api v0.0.0-20240227224415-6ceb2ff114de
+	google.golang.org/genproto/googleapis/api v0.0.0-20240415180920-8c6c420018be
 	google.golang.org/grpc v1.62.0
 	google.golang.org/protobuf v1.32.0
 )
