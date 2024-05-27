@@ -26,6 +26,3 @@ protoc -I epic_sync/ -I C:/Users/izanr/go/pkg/mod/github.com/grpc-ecosystem/grpc
 protoc -I epic_sync/ -I C:/Users/izanr/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.16.0/third_party/googleapis --swagger_out=logtostderr=true:epic_sync epic_sync/epic_sync.proto
 
 protoc -I epic_sync/ -I C:/Users/izanr/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.16.0/third_party/googleapis --doc_out=./epic_sync --doc_opt=markdown,epic_sync_grpc_api.md epic_sync/epic_sync.proto
-
-mv services/server/* epic_sync/epic_sync.v1
-rm -rf services/server

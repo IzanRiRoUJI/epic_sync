@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-option go_package = "../services/server";
+option go_package = "epic_sync.v1;server";
+
 
 import "google/api/annotations.proto";
+
 
 enum CardCategory{
     UNKNOWN_C = 0;
@@ -98,36 +100,143 @@ message CardsList {
     repeated Card cards = 1;
 }
 
-message AddCardRequest{
+message AddCardRequest {
     Card card = 1;
 }
 
-message AddCardResult{
+message AddCardResult {
     bool insertedCard = 1;
 }
 
-message DeleteCardRequest{
+message DeleteCardRequest {
     uint64 id_card = 1;
 }
 
-message DeleteCardResult{
+message DeleteCardResult {
     bool deletedCard = 1;
 }
 
-message UpdateCardRequest{
+message UpdateCardRequest {
     Card card = 1;
 }
 
-message UpdateCardResult{
+message UpdateCardResult {
     bool updatedCard = 1;
 }
 
+message AddLabelToCardRequest {
+    uint64 card_id = 1;
+    uint64 label_id = 2;
+}
+
+message AddLabelToCardResult {
+    bool success = 1;
+}
+
+message RemoveLabelFromCardRequest {
+    uint64 card_id = 1;
+    uint64 label_id = 2;
+}
+
+message RemoveLabelFromCardResult {
+    bool success = 1;
+}
+
+message ListCardCommentsRequest {
+    uint64 card_id = 1;
+}
+
+message CardCommentsList {
+    repeated Comment comments = 1;
+}
+
+message AddCommentToCardRequest {
+    uint64 card_id = 1;
+    string content = 2;
+}
+
+message AddCommentToCardResult {
+    bool success = 1;
+}
+
+message DeleteCardCommentRequest {
+    uint64 card_id = 1;
+    uint64 comment_id = 2;
+}
+
+message DeleteCardCommentResult {
+    bool success = 1;
+}
+
+message MoveCardToCategoryRequest {
+    uint64 card_id = 1;
+    CardCategory category = 2;
+}
+
+message MoveCardToCategoryResult {
+    bool success = 1;
+}
+
+message AssignCardToUserRequest {
+    uint64 card_id = 1;
+    uint64 user_id = 2;
+}
+
+message AssignCardToUserResult {
+    bool success = 1;
+}
+
+message UsersList {
+    repeated User users = 1;
+}
+
+message UserIdRequest {
+    uint64 id = 1;
+}
+
+message UpdateUserRequest {
+    uint64 id = 1;
+    string name = 2;
+    string email = 3;
+    string token = 4;
+    bool isAdmin = 5;
+    // Agrega cualquier otro campo que desees actualizar
+}
+
+message UpdateUserResult {
+    bool success = 1;
+    // Puedes agregar más información sobre el resultado si es necesario
+}
+
+message DeleteUserResult {
+    bool success = 1;
+    // Puedes agregar más información sobre el resultado si es necesario
+}
 
 service Server {
     rpc AddUser (addUserRequest) returns (addUserResult){
         option (google.api.http) = {
             post: "/server/add_user"
             body: "*"
+        };
+    }
+
+    rpc GetUserById (UserIdRequest) returns (User) {
+        option (google.api.http) = {
+            get: "/server/users/{id}"
+        };
+    }
+
+    rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResult) {
+        option (google.api.http) = {
+            put: "/server/users/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeleteUser (UserIdRequest) returns (DeleteUserResult) {
+        option (google.api.http) = {
+            delete: "/server/users/{id}"
         };
     }
 
@@ -156,5 +265,50 @@ service Server {
         };
     }
 
+    rpc AddLabelToCard (AddLabelToCardRequest) returns (AddLabelToCardResult) {
+        option (google.api.http) = {
+            post: "/server/cards/{card_id}/labels"
+            body: "*"
+        };
+    }
+
+    rpc RemoveLabelFromCard (RemoveLabelFromCardRequest) returns (RemoveLabelFromCardResult) {
+        option (google.api.http) = {
+            delete: "/server/cards/{card_id}/labels/{label_id}"
+        };
+    }
+
+    rpc ListCardComments (ListCardCommentsRequest) returns (CardCommentsList) {
+        option (google.api.http) = {
+            get: "/server/cards/{card_id}/comments"
+        };
+    }
+
+    rpc AddCommentToCard (AddCommentToCardRequest) returns (AddCommentToCardResult) {
+        option (google.api.http) = {
+            post: "/server/cards/{card_id}/comments"
+            body: "*"
+        };
+    }
+
+    rpc DeleteCardComment (DeleteCardCommentRequest) returns (DeleteCardCommentResult) {
+        option (google.api.http) = {
+            delete: "/server/cards/{card_id}/comments/{comment_id}"
+        };
+    }
+
+    rpc MoveCardToCategory (MoveCardToCategoryRequest) returns (MoveCardToCategoryResult) {
+        option (google.api.http) = {
+            put: "/server/cards/{card_id}/move"
+            body: "*"
+        };
+    }
+
+    rpc AssignCardToUser (AssignCardToUserRequest) returns (AssignCardToUserResult) {
+        option (google.api.http) = {
+            put: "/server/cards/{card_id}/assign"
+            body: "*"
+        };
+    }
     
 } 

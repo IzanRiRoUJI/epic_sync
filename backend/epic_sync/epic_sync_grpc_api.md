@@ -3,42 +3,61 @@
 
 ## Table of Contents
 
-- [epic_sync.proto](#epic_sync-proto)
-    - [AddCardRequest](#-AddCardRequest)
-    - [AddCardResult](#-AddCardResult)
-    - [Card](#-Card)
-    - [CardsList](#-CardsList)
-    - [Comment](#-Comment)
-    - [DeleteCardRequest](#-DeleteCardRequest)
-    - [DeleteCardResult](#-DeleteCardResult)
-    - [Label](#-Label)
-    - [UpdateCardRequest](#-UpdateCardRequest)
-    - [UpdateCardResult](#-UpdateCardResult)
-    - [User](#-User)
-    - [addUserRequest](#-addUserRequest)
-    - [addUserResult](#-addUserResult)
-    - [getCardsFiltered](#-getCardsFiltered)
+- [epic_sync.proto](#epic_sync.proto)
+    - [AddCardRequest](#.AddCardRequest)
+    - [AddCardResult](#.AddCardResult)
+    - [AddCommentToCardRequest](#.AddCommentToCardRequest)
+    - [AddCommentToCardResult](#.AddCommentToCardResult)
+    - [AddLabelToCardRequest](#.AddLabelToCardRequest)
+    - [AddLabelToCardResult](#.AddLabelToCardResult)
+    - [AssignCardToUserRequest](#.AssignCardToUserRequest)
+    - [AssignCardToUserResult](#.AssignCardToUserResult)
+    - [Card](#.Card)
+    - [CardCommentsList](#.CardCommentsList)
+    - [CardsList](#.CardsList)
+    - [Comment](#.Comment)
+    - [DeleteCardCommentRequest](#.DeleteCardCommentRequest)
+    - [DeleteCardCommentResult](#.DeleteCardCommentResult)
+    - [DeleteCardRequest](#.DeleteCardRequest)
+    - [DeleteCardResult](#.DeleteCardResult)
+    - [DeleteUserResult](#.DeleteUserResult)
+    - [Label](#.Label)
+    - [ListCardCommentsRequest](#.ListCardCommentsRequest)
+    - [MoveCardToCategoryRequest](#.MoveCardToCategoryRequest)
+    - [MoveCardToCategoryResult](#.MoveCardToCategoryResult)
+    - [RemoveLabelFromCardRequest](#.RemoveLabelFromCardRequest)
+    - [RemoveLabelFromCardResult](#.RemoveLabelFromCardResult)
+    - [UpdateCardRequest](#.UpdateCardRequest)
+    - [UpdateCardResult](#.UpdateCardResult)
+    - [UpdateUserRequest](#.UpdateUserRequest)
+    - [UpdateUserResult](#.UpdateUserResult)
+    - [User](#.User)
+    - [UserIdRequest](#.UserIdRequest)
+    - [UsersList](#.UsersList)
+    - [addUserRequest](#.addUserRequest)
+    - [addUserResult](#.addUserResult)
+    - [getCardsFiltered](#.getCardsFiltered)
   
-    - [CardBacklog](#-CardBacklog)
-    - [CardCategory](#-CardCategory)
-    - [CardPriority](#-CardPriority)
-    - [CardState](#-CardState)
-    - [CardType](#-CardType)
+    - [CardBacklog](#.CardBacklog)
+    - [CardCategory](#.CardCategory)
+    - [CardPriority](#.CardPriority)
+    - [CardState](#.CardState)
+    - [CardType](#.CardType)
   
-    - [Server](#-Server)
+    - [Server](#.Server)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="epic_sync-proto"></a>
+<a name="epic_sync.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## epic_sync.proto
 
 
 
-<a name="-AddCardRequest"></a>
+<a name=".AddCardRequest"></a>
 
 ### AddCardRequest
 
@@ -53,7 +72,7 @@
 
 
 
-<a name="-AddCardResult"></a>
+<a name=".AddCardResult"></a>
 
 ### AddCardResult
 
@@ -68,7 +87,100 @@
 
 
 
-<a name="-Card"></a>
+<a name=".AddCommentToCardRequest"></a>
+
+### AddCommentToCardRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+| content | [string](#string) |  |  |
+
+
+
+
+
+
+<a name=".AddCommentToCardResult"></a>
+
+### AddCommentToCardResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name=".AddLabelToCardRequest"></a>
+
+### AddLabelToCardRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+| label_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".AddLabelToCardResult"></a>
+
+### AddLabelToCardResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name=".AssignCardToUserRequest"></a>
+
+### AssignCardToUserRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+| user_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".AssignCardToUserResult"></a>
+
+### AssignCardToUserResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name=".Card"></a>
 
 ### Card
 
@@ -96,7 +208,22 @@
 
 
 
-<a name="-CardsList"></a>
+<a name=".CardCommentsList"></a>
+
+### CardCommentsList
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| comments | [Comment](#Comment) | repeated |  |
+
+
+
+
+
+
+<a name=".CardsList"></a>
 
 ### CardsList
 
@@ -111,7 +238,7 @@
 
 
 
-<a name="-Comment"></a>
+<a name=".Comment"></a>
 
 ### Comment
 
@@ -131,7 +258,38 @@
 
 
 
-<a name="-DeleteCardRequest"></a>
+<a name=".DeleteCardCommentRequest"></a>
+
+### DeleteCardCommentRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+| comment_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".DeleteCardCommentResult"></a>
+
+### DeleteCardCommentResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name=".DeleteCardRequest"></a>
 
 ### DeleteCardRequest
 
@@ -146,7 +304,7 @@
 
 
 
-<a name="-DeleteCardResult"></a>
+<a name=".DeleteCardResult"></a>
 
 ### DeleteCardResult
 
@@ -161,7 +319,22 @@
 
 
 
-<a name="-Label"></a>
+<a name=".DeleteUserResult"></a>
+
+### DeleteUserResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  | Puedes agregar más información sobre el resultado si es necesario |
+
+
+
+
+
+
+<a name=".Label"></a>
 
 ### Label
 
@@ -177,7 +350,84 @@
 
 
 
-<a name="-UpdateCardRequest"></a>
+<a name=".ListCardCommentsRequest"></a>
+
+### ListCardCommentsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".MoveCardToCategoryRequest"></a>
+
+### MoveCardToCategoryRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+| category | [CardCategory](#CardCategory) |  |  |
+
+
+
+
+
+
+<a name=".MoveCardToCategoryResult"></a>
+
+### MoveCardToCategoryResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name=".RemoveLabelFromCardRequest"></a>
+
+### RemoveLabelFromCardRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| card_id | [uint64](#uint64) |  |  |
+| label_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".RemoveLabelFromCardResult"></a>
+
+### RemoveLabelFromCardResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name=".UpdateCardRequest"></a>
 
 ### UpdateCardRequest
 
@@ -192,7 +442,7 @@
 
 
 
-<a name="-UpdateCardResult"></a>
+<a name=".UpdateCardResult"></a>
 
 ### UpdateCardResult
 
@@ -207,7 +457,41 @@
 
 
 
-<a name="-User"></a>
+<a name=".UpdateUserRequest"></a>
+
+### UpdateUserRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [uint64](#uint64) |  |  |
+| name | [string](#string) |  |  |
+| email | [string](#string) |  |  |
+| token | [string](#string) |  |  |
+| isAdmin | [bool](#bool) |  | Agrega cualquier otro campo que desees actualizar |
+
+
+
+
+
+
+<a name=".UpdateUserResult"></a>
+
+### UpdateUserResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  | Puedes agregar más información sobre el resultado si es necesario |
+
+
+
+
+
+
+<a name=".User"></a>
 
 ### User
 
@@ -226,7 +510,37 @@
 
 
 
-<a name="-addUserRequest"></a>
+<a name=".UserIdRequest"></a>
+
+### UserIdRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".UsersList"></a>
+
+### UsersList
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| users | [User](#User) | repeated |  |
+
+
+
+
+
+
+<a name=".addUserRequest"></a>
 
 ### addUserRequest
 
@@ -241,7 +555,7 @@
 
 
 
-<a name="-addUserResult"></a>
+<a name=".addUserResult"></a>
 
 ### addUserResult
 
@@ -256,7 +570,7 @@
 
 
 
-<a name="-getCardsFiltered"></a>
+<a name=".getCardsFiltered"></a>
 
 ### getCardsFiltered
 
@@ -277,7 +591,7 @@
  
 
 
-<a name="-CardBacklog"></a>
+<a name=".CardBacklog"></a>
 
 ### CardBacklog
 
@@ -290,7 +604,7 @@
 
 
 
-<a name="-CardCategory"></a>
+<a name=".CardCategory"></a>
 
 ### CardCategory
 
@@ -303,7 +617,7 @@
 
 
 
-<a name="-CardPriority"></a>
+<a name=".CardPriority"></a>
 
 ### CardPriority
 
@@ -317,7 +631,7 @@
 
 
 
-<a name="-CardState"></a>
+<a name=".CardState"></a>
 
 ### CardState
 
@@ -332,7 +646,7 @@
 
 
 
-<a name="-CardType"></a>
+<a name=".CardType"></a>
 
 ### CardType
 
@@ -350,7 +664,7 @@
  
 
 
-<a name="-Server"></a>
+<a name=".Server"></a>
 
 ### Server
 
@@ -358,10 +672,20 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | AddUser | [.addUserRequest](#addUserRequest) | [.addUserResult](#addUserResult) |  |
+| GetUserById | [.UserIdRequest](#UserIdRequest) | [.User](#User) |  |
+| UpdateUser | [.UpdateUserRequest](#UpdateUserRequest) | [.UpdateUserResult](#UpdateUserResult) |  |
+| DeleteUser | [.UserIdRequest](#UserIdRequest) | [.DeleteUserResult](#DeleteUserResult) |  |
 | GetCards | [.getCardsFiltered](#getCardsFiltered) | [.CardsList](#CardsList) |  |
 | AddCard | [.AddCardRequest](#AddCardRequest) | [.AddCardResult](#AddCardResult) |  |
 | DeleteCard | [.DeleteCardRequest](#DeleteCardRequest) | [.DeleteCardResult](#DeleteCardResult) |  |
 | UpdateCard | [.UpdateCardRequest](#UpdateCardRequest) | [.UpdateCardResult](#UpdateCardResult) |  |
+| AddLabelToCard | [.AddLabelToCardRequest](#AddLabelToCardRequest) | [.AddLabelToCardResult](#AddLabelToCardResult) |  |
+| RemoveLabelFromCard | [.RemoveLabelFromCardRequest](#RemoveLabelFromCardRequest) | [.RemoveLabelFromCardResult](#RemoveLabelFromCardResult) |  |
+| ListCardComments | [.ListCardCommentsRequest](#ListCardCommentsRequest) | [.CardCommentsList](#CardCommentsList) |  |
+| AddCommentToCard | [.AddCommentToCardRequest](#AddCommentToCardRequest) | [.AddCommentToCardResult](#AddCommentToCardResult) |  |
+| DeleteCardComment | [.DeleteCardCommentRequest](#DeleteCardCommentRequest) | [.DeleteCardCommentResult](#DeleteCardCommentResult) |  |
+| MoveCardToCategory | [.MoveCardToCategoryRequest](#MoveCardToCategoryRequest) | [.MoveCardToCategoryResult](#MoveCardToCategoryResult) |  |
+| AssignCardToUser | [.AssignCardToUserRequest](#AssignCardToUserRequest) | [.AssignCardToUserResult](#AssignCardToUserResult) |  |
 
  
 

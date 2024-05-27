@@ -1,3 +1,5 @@
+import 'package:epic_sync/pages/management/proyect_management_board%20copy%202.dart';
+import 'package:epic_sync/pages/management/roadmap_management_board%20copy.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:epic_sync/auth.dart';
@@ -64,13 +66,16 @@ class ScrumManagementApp extends StatelessWidget {
       '/dashboard': (context) => _authChecker(const Dashboard()),
       '/proyectos/pizarra': (context) =>
           _authChecker(const ProyectsKanbanBoard()),
-      '/proyectos/gestion': (context) => _authChecker(const ManagementBoard()),
+      '/proyectos/gestion': (context) =>
+          _authChecker(const ProyectsManagementBoard()),
       '/proyectos/estadisticas': (context) => _authChecker(const StatsBoard()),
       '/general/pizarra': (context) => _authChecker(const GeneralKanbanBoard()),
-      '/general/gestion': (context) => _authChecker(const ManagementBoard()),
+      '/general/gestion': (context) =>
+          _authChecker(const GeneralManagementBoard()),
       '/general/estadisticas': (context) => _authChecker(const StatsBoard()),
       '/roadmap/pizarra': (context) => _authChecker(const RoadmapKanbanBoard()),
-      '/roadmap/gestion': (context) => _authChecker(const ManagementBoard()),
+      '/roadmap/gestion': (context) =>
+          _authChecker(const RoadmapManagementBoard()),
       '/roadmap/estadisticas': (context) => _authChecker(const StatsBoard()),
       '/crearTarjeta': (context) => _authChecker(CreateCard()),
     };

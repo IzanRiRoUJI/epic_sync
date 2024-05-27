@@ -30,7 +30,7 @@ class Dashboard extends StatelessWidget {
                   child: Center(
                     child: LayoutBuilder(
                       builder: (context, constraints) {
-                        if (MediaQuery.of(context).size.width > 1200 &&
+                        if (MediaQuery.of(context).size.width >= 1500 &&
                             MediaQuery.of(context).size.height > 400) {
                           return Column(
                             children: [

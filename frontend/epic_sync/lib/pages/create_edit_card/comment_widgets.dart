@@ -1,7 +1,7 @@
+import 'package:epic_sync/pages/create_edit_card/edit_dart.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:epic_sync/pages/create_edit_card/create_card.dart';
 import 'package:epic_sync/providers/comments_provider.dart';
 import 'package:epic_sync/providers/globals_provider.dart';
 import 'package:epic_sync/providers/theme_provider.dart';
@@ -10,14 +10,13 @@ import 'package:epic_sync_lib/epic_sync.pb.dart' as epic_sync;
 
 class CommentsBlock extends StatelessWidget {
   final Function callback;
+  final EditCard widget;
 
   const CommentsBlock({
     Key? key,
-    required this.widget,
     required this.callback,
+    required this.widget,
   }) : super(key: key);
-
-  final CreateCard widget;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +36,10 @@ class CommentsBlock extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text(
+              Text(
                 'Comentarios',
                 style: TextStyle(
+                  color: Provider.of<ThemeProvider>(context).textColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -50,6 +50,9 @@ class CommentsBlock extends StatelessWidget {
                 onPressed: () {
                   callback(0);
                 },
+                color: Provider.of<ThemeProvider>(context).isDarkMode
+                    ? Colors.white
+                    : Colors.black,
               ),
             ],
           ),
@@ -64,8 +67,11 @@ class CommentsBlock extends StatelessWidget {
                     },
                   ),
                 )
-              : const Text(
-                  'Todavía no hay comentarios, pulsa sobre el botón para añadir uno'),
+              : Text(
+                  'Todavía no hay comentarios, pulsa sobre el botón para añadir uno',
+                  style: TextStyle(
+                      color: Provider.of<ThemeProvider>(context).textColor),
+                ),
         ],
       ),
     );
@@ -97,7 +103,7 @@ class WriteCommentBox extends StatelessWidget {
         content: commentController.text,
         idCard: cardToComment.id,
         idUser:
-            Provider.of<GlobalStateInfo>(context, listen: false).userIdLogged!,
+            Provider.of<GlobalStateInfo>(context, listen: false).userLogged!.id,
         parent: Int64(parent ?? 0),
         date: DateTime.now().toString(),
       );
@@ -116,13 +122,17 @@ class WriteCommentBox extends StatelessWidget {
               parent != 0
                   ? 'Respondiendo a un comentario'
                   : 'Escribe un comentario',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: Provider.of<ThemeProvider>(context).textColor,
               ),
             ),
             const SizedBox(height: 25),
             TextField(
+              style: TextStyle(
+                color: Provider.of<ThemeProvider>(context).textColor,
+              ),
               controller: commentController,
               keyboardType: TextInputType.multiline,
               maxLines: 3,

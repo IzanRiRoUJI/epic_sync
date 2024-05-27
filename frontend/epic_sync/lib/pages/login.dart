@@ -342,7 +342,8 @@ class _LoginState extends State<Login> {
 
     for (epic_sync.User user in userProvider.users!) {
       if (user.email == email) {
-        Provider.of<GlobalStateInfo>(context, listen: false).setUserId(user.id);
+        Provider.of<GlobalStateInfo>(context, listen: false)
+            .setUserLogged(user);
         return true;
       }
     }

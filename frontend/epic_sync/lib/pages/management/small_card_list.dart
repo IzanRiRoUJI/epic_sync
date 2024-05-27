@@ -22,7 +22,7 @@ class SmallCardListState extends State<SmallCardList> {
   @override
   void initState() {
     super.initState();
-    backlog = widget.category.split(' ')[1];
+    backlog = widget.category.split(' ')[1] == "Backlog" ? 'True' : 'False';
   }
 
   List<epic_sync.Card> getFilteredCards() {
@@ -67,6 +67,10 @@ class SmallCardListState extends State<SmallCardList> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final cardProvider = Provider.of<CardProvider>(context);
 
+    List<epic_sync.Card> filteredCards = getFilteredCards();
+
+    int cardsCount = filteredCards.length;
+
     return Align(
       alignment: Alignment.center,
       child: Column(
@@ -82,7 +86,7 @@ class SmallCardListState extends State<SmallCardList> {
               maintainState: true,
               initiallyExpanded: true,
               title: Text(
-                widget.category,
+                "${widget.category} ($cardsCount)",
                 style: TextStyle(
                   color: themeProvider.textColor,
                   fontSize: 20,
@@ -109,7 +113,7 @@ class SmallCardListState extends State<SmallCardList> {
                     });
                   },
                   builder: (context, candidateData, rejectedData) =>
-                      buildFilteredCardsList(context, backlog),
+                      buildFilteredCardsList(context, backlog, filteredCards),
                 ),
               ],
             ),
@@ -119,10 +123,9 @@ class SmallCardListState extends State<SmallCardList> {
     );
   }
 
-  Widget buildFilteredCardsList(BuildContext context, bool backlog) {
+  Widget buildFilteredCardsList(
+      BuildContext context, bool backlog, List<epic_sync.Card> filteredCards) {
     final cardProvider = Provider.of<CardProvider>(context);
-
-    List<epic_sync.Card> filteredCards = getFilteredCards();
 
     filteredCards.sort((a, b) => priorityOrder(a).compareTo(priorityOrder(b)));
 

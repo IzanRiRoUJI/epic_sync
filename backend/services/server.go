@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	pb "github.com/IzanriroUJI/epic_sync/backend/epic_sync/epic_sync.v1"
+	pb "github.com/IzanRiRoUJI/epic_sync/backend/epic_sync/epic_sync.v1"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	_ "github.com/lib/pq"
@@ -225,3 +225,140 @@ func (s *serverService) UpdateCard(ctx context.Context, in *pb.UpdateCardRequest
 		in.Card.Title, in.Card.Epic, in.Card.Description, pb.CardType_name[int32(in.Card.Type)], pb.CardPriority_name[int32(in.Card.Priority)], pb.CardState_name[int32(in.Card.State)], pb.CardBacklog_name[int32(in.Card.Backlog)], in.Card.Datecreated, in.Card.Storypoints, pb.CardCategory_name[int32(in.Card.Category)], in.Card.IdUser, in.Card.Id)
 	return &pb.UpdateCardResult{UpdatedCard: true}, err
 }
+func (s *serverService) AddLabelToCard(ctx context.Context, in *pb.AddLabelToCardRequest) (*pb.AddLabelToCardResult, error) {
+	fmt.Println("Add label to card")
+
+	var exists bool
+	err := s.db.QueryRow("SELECT EXISTS (SELECT 1 FROM labels WHERE id = $1)", in.LabelId).Scan(&exists)
+	if err != nil {
+		return nil, err
+	}
+	if !exists {
+		return nil, errors.New("la etiqueta no existe en la base de datos")
+	}
+
+	_, err = s.db.Exec("INSERT INTO card_labels (id_card, id_label) VALUES ($1, $2)", in.CardId, in.LabelId)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AddLabelToCardResult{Success: true}, nil
+}
+
+func (s *serverService) RemoveLabelFromCard(ctx context.Context, in *pb.RemoveLabelFromCardRequest) (*pb.RemoveLabelFromCardResult, error) {
+	fmt.Println("Remove label from card")
+
+	_, err := s.db.Exec("DELETE FROM card_labels WHERE id_card = $1 AND id_label = $2", in.CardId, in.LabelId)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.RemoveLabelFromCardResult{Success: true}, nil
+}
+
+func (s *serverService) ListCardComments(ctx context.Context, in *pb.ListCardCommentsRequest) (*pb.CardCommentsList, error) {
+	fmt.Println("List card comments")
+
+	rows, err := s.db.Query("SELECT * FROM comments WHERE id_card = $1", in.CardId)
+	if err != nil {
+		fmt.Printf("ERROR: %v\n", err)
+		return nil, err
+	}
+	defer rows.Close()
+
+	comments := []*pb.Comment{}
+
+	for rows.Next() {
+		var comment pb.Comment
+		if err := rows.Scan(&comment.Id, &comment.IdCard, &comment.IdUser, &comment.Date, &comment.Content, &comment.Parent); err != nil {
+			return nil, err
+		}
+		comments = append(comments, &comment)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return &pb.CardCommentsList{Comments: comments}, nil
+}
+
+func (s *serverService) AddCommentToCard(ctx context.Context, in *pb.AddCommentToCardRequest) (*pb.AddCommentToCardResult, error) {
+	fmt.Println("Add comment to card")
+
+	_, err := s.db.Exec("INSERT INTO comments (id_card, id_user, content) VALUES ($1, $2, $3)", in.CardId, in.Content)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AddCommentToCardResult{Success: true}, nil
+}
+
+func (s *serverService) DeleteCardComment(ctx context.Context, in *pb.DeleteCardCommentRequest) (*pb.DeleteCardCommentResult, error) {
+	fmt.Println("Delete card comment")
+
+	_, err := s.db.Exec("DELETE FROM comments WHERE id = $1 AND id_card = $2", in.CommentId, in.CardId)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.DeleteCardCommentResult{Success: true}, nil
+}
+
+func (s *serverService) MoveCardToCategory(ctx context.Context, in *pb.MoveCardToCategoryRequest) (*pb.MoveCardToCategoryResult, error) {
+	fmt.Println("Move card to category")
+
+	_, err := s.db.Exec("UPDATE cards SET category = $1 WHERE id_card = $2", pb.CardCategory_name[int32(in.Category)], in.CardId)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.MoveCardToCategoryResult{Success: true}, nil
+}
+
+func (s *serverService) AssignCardToUser(ctx context.Context, in *pb.AssignCardToUserRequest) (*pb.AssignCardToUserResult, error) {
+	fmt.Println("Assign card to user")
+
+	_, err := s.db.Exec("UPDATE cards SET id_user = $1 WHERE id_card = $2", in.UserId, in.CardId)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AssignCardToUserResult{Success: true}, nil
+}
+func (s *serverService) GetUserById(ctx context.Context, in *pb.UserIdRequest) (*pb.User, error) {
+	fmt.Println("Get user by ID")
+
+	var user pb.User
+
+	err := s.db.QueryRow("SELECT id, name, email, token, isAdmin FROM users WHERE id = $1", in.Id).Scan(&user.Id, &user.Name, &user.Email, &user.Token, &user.IsAdmin)
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}
+
+func (s *serverService) UpdateUser(ctx context.Context, in *pb.UpdateUserRequest) (*pb.UpdateUserResult, error) {
+	fmt.Println("Update user")
+
+	_, err := s.db.Exec("UPDATE users SET name = $1, email = $2, token = $3, isAdmin = $4 WHERE id = $5",
+		in.Name, in.Email, in.Token, in.IsAdmin, in.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.UpdateUserResult{Success: true}, nil
+}
+
+func (s *serverService) DeleteUser(ctx context.Context, in *pb.UserIdRequest) (*pb.DeleteUserResult, error) {
+	fmt.Println("Delete user")
+
+	_, err := s.db.Exec("DELETE FROM users WHERE id = $1", in.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.DeleteUserResult{Success: true}, nil
+}
+

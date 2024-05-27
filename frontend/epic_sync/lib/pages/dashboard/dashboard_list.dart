@@ -106,7 +106,7 @@ class DashboardStats extends StatelessWidget {
                 ),
               const SizedBox(height: 20),
               SizedBox(
-                height: 50,
+                height: 80,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(

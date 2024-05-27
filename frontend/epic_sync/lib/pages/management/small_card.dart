@@ -1,9 +1,9 @@
+import 'package:epic_sync/pages/create_edit_card/edit_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:epic_sync/providers/theme_provider.dart';
 import 'package:epic_sync/providers/user_provider.dart';
 import 'package:epic_sync_lib/epic_sync.pb.dart' as epic_sync;
-import 'package:epic_sync/pages/create_edit_card/create_card.dart';
 
 class SmallCard extends StatelessWidget {
   final epic_sync.Card card;
@@ -46,7 +46,7 @@ class SmallCard extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CreateCard(
+                    builder: (context) => EditCard(
                       card: card,
                     ),
                   ),

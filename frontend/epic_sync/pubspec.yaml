@@ -21,6 +21,7 @@ dependencies:
   fixnum: ^1.0.1
   flutter_animate: ^4.4.1
   flutter_datetime_picker: ^1.5.1
+  syncfusion_flutter_charts: ^19.1.59
 
 dev_dependencies:
   flutter_test:

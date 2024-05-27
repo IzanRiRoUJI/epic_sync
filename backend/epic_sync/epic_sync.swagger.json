@@ -1,0 +1,866 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "epic_sync.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/server/add_card": {
+      "post": {
+        "operationId": "AddCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddCardResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/add_user": {
+      "post": {
+        "operationId": "AddUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/addUserResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/cards/{card_id}/assign": {
+      "put": {
+        "operationId": "AssignCardToUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AssignCardToUserResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssignCardToUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/cards/{card_id}/comments": {
+      "get": {
+        "operationId": "ListCardComments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CardCommentsList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      },
+      "post": {
+        "operationId": "AddCommentToCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddCommentToCardResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddCommentToCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/cards/{card_id}/comments/{comment_id}": {
+      "delete": {
+        "operationId": "DeleteCardComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteCardCommentResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "comment_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/cards/{card_id}/labels": {
+      "post": {
+        "operationId": "AddLabelToCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddLabelToCardResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddLabelToCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/cards/{card_id}/labels/{label_id}": {
+      "delete": {
+        "operationId": "RemoveLabelFromCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RemoveLabelFromCardResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "label_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/cards/{card_id}/move": {
+      "put": {
+        "operationId": "MoveCardToCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/MoveCardToCategoryResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MoveCardToCategoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/delete_card": {
+      "post": {
+        "operationId": "DeleteCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteCardResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/get_cards": {
+      "post": {
+        "operationId": "GetCards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CardsList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getCardsFiltered"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/update_card": {
+      "post": {
+        "operationId": "UpdateCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateCardResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/server/users/{id}": {
+      "get": {
+        "operationId": "GetUserById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteUserResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Server"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddCardRequest": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "$ref": "#/definitions/Card"
+        }
+      }
+    },
+    "AddCardResult": {
+      "type": "object",
+      "properties": {
+        "insertedCard": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "AddCommentToCardRequest": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "AddCommentToCardResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "AddLabelToCardRequest": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "label_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "AddLabelToCardResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "AssignCardToUserRequest": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "AssignCardToUserResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "Card": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "epic": {
+          "type": "string"
+        },
+        "id_user": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "category": {
+          "$ref": "#/definitions/CardCategory"
+        },
+        "datecreated": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/definitions/CardPriority"
+        },
+        "state": {
+          "$ref": "#/definitions/CardState"
+        },
+        "storypoints": {
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "$ref": "#/definitions/CardType"
+        },
+        "backlog": {
+          "$ref": "#/definitions/CardBacklog"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Label"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comment"
+          }
+        }
+      }
+    },
+    "CardBacklog": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_B",
+        "True",
+        "False"
+      ],
+      "default": "UNKNOWN_B"
+    },
+    "CardCategory": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_C",
+        "Roadmap",
+        "Proyectos"
+      ],
+      "default": "UNKNOWN_C"
+    },
+    "CardCommentsList": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comment"
+          }
+        }
+      }
+    },
+    "CardPriority": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_P",
+        "Alta",
+        "Media",
+        "Baja"
+      ],
+      "default": "UNKNOWN_P"
+    },
+    "CardState": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_S",
+        "Pendiente",
+        "Proceso",
+        "Revisar",
+        "Listo"
+      ],
+      "default": "UNKNOWN_S"
+    },
+    "CardType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_T",
+        "Tarea",
+        "Historia",
+        "Error"
+      ],
+      "default": "UNKNOWN_T"
+    },
+    "CardsList": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Card"
+          }
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "id_card": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "id_user": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "date": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "DeleteCardCommentResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "DeleteCardRequest": {
+      "type": "object",
+      "properties": {
+        "id_card": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "DeleteCardResult": {
+      "type": "object",
+      "properties": {
+        "deletedCard": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "DeleteUserResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "Label": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "MoveCardToCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "category": {
+          "$ref": "#/definitions/CardCategory"
+        }
+      }
+    },
+    "MoveCardToCategoryResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "RemoveLabelFromCardResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "UpdateCardRequest": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "$ref": "#/definitions/Card"
+        }
+      }
+    },
+    "UpdateCardResult": {
+      "type": "object",
+      "properties": {
+        "updatedCard": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "UpdateUserRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "UpdateUserResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "addUserRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "addUserResult": {
+      "type": "object",
+      "properties": {
+        "insertedEmail": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "getCardsFiltered": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/CardCategory"
+        },
+        "priority": {
+          "$ref": "#/definitions/CardPriority"
+        },
+        "state": {
+          "$ref": "#/definitions/CardState"
+        },
+        "type": {
+          "$ref": "#/definitions/CardType"
+        },
+        "backlog": {
+          "$ref": "#/definitions/CardBacklog"
+        }
+      }
+    }
+  }
+}

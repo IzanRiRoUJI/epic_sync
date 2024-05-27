@@ -6,8 +6,8 @@ import 'package:epic_sync/providers/globals_provider.dart';
 
 import 'package:epic_sync/providers/theme_provider.dart';
 
-class GeneralManagementBoard extends StatelessWidget {
-  const GeneralManagementBoard({Key? key}) : super(key: key);
+class ProyectsManagementBoard extends StatelessWidget {
+  const ProyectsManagementBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +51,12 @@ class GeneralManagementBoard extends StatelessWidget {
                         const SizedBox(height: 10),
                         const SmallCardList(
                           category: 'En Roadmap',
-                          s: 'G',
+                          s: 'P',
                         ),
                         const SizedBox(height: 10),
                         const SmallCardList(
                           category: 'En Backlog',
-                          s: 'G',
+                          s: 'P',
                         ),
                       ],
                     ),

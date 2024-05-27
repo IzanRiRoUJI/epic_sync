@@ -69,8 +69,10 @@ class UserProvider with ChangeNotifier {
       return Image.asset('ana.png');
     } else if (user.name == 'Pedro') {
       return Image.asset('pedro.png');
+    } else if (user.name == 'Admin') {
+      return Image.asset('admin.png');
     }
-    return Image.asset('error.png');
+    return Image.asset('default.png');
   }
 
   int highestId() {

@@ -239,3 +239,203 @@ const UpdateCardResult$json = const {
 
 /// Descriptor for `UpdateCardResult`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateCardResultDescriptor = $convert.base64Decode('ChBVcGRhdGVDYXJkUmVzdWx0EiAKC3VwZGF0ZWRDYXJkGAEgASgIUgt1cGRhdGVkQ2FyZA==');
+@$core.Deprecated('Use addLabelToCardRequestDescriptor instead')
+const AddLabelToCardRequest$json = const {
+  '1': 'AddLabelToCardRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+    const {'1': 'label_id', '3': 2, '4': 1, '5': 4, '10': 'labelId'},
+  ],
+};
+
+/// Descriptor for `AddLabelToCardRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List addLabelToCardRequestDescriptor = $convert.base64Decode('ChVBZGRMYWJlbFRvQ2FyZFJlcXVlc3QSFwoHY2FyZF9pZBgBIAEoBFIGY2FyZElkEhkKCGxhYmVsX2lkGAIgASgEUgdsYWJlbElk');
+@$core.Deprecated('Use addLabelToCardResultDescriptor instead')
+const AddLabelToCardResult$json = const {
+  '1': 'AddLabelToCardResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `AddLabelToCardResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List addLabelToCardResultDescriptor = $convert.base64Decode('ChRBZGRMYWJlbFRvQ2FyZFJlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNz');
+@$core.Deprecated('Use removeLabelFromCardRequestDescriptor instead')
+const RemoveLabelFromCardRequest$json = const {
+  '1': 'RemoveLabelFromCardRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+    const {'1': 'label_id', '3': 2, '4': 1, '5': 4, '10': 'labelId'},
+  ],
+};
+
+/// Descriptor for `RemoveLabelFromCardRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List removeLabelFromCardRequestDescriptor = $convert.base64Decode('ChpSZW1vdmVMYWJlbEZyb21DYXJkUmVxdWVzdBIXCgdjYXJkX2lkGAEgASgEUgZjYXJkSWQSGQoIbGFiZWxfaWQYAiABKARSB2xhYmVsSWQ=');
+@$core.Deprecated('Use removeLabelFromCardResultDescriptor instead')
+const RemoveLabelFromCardResult$json = const {
+  '1': 'RemoveLabelFromCardResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `RemoveLabelFromCardResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List removeLabelFromCardResultDescriptor = $convert.base64Decode('ChlSZW1vdmVMYWJlbEZyb21DYXJkUmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3M=');
+@$core.Deprecated('Use listCardCommentsRequestDescriptor instead')
+const ListCardCommentsRequest$json = const {
+  '1': 'ListCardCommentsRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+  ],
+};
+
+/// Descriptor for `ListCardCommentsRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List listCardCommentsRequestDescriptor = $convert.base64Decode('ChdMaXN0Q2FyZENvbW1lbnRzUmVxdWVzdBIXCgdjYXJkX2lkGAEgASgEUgZjYXJkSWQ=');
+@$core.Deprecated('Use cardCommentsListDescriptor instead')
+const CardCommentsList$json = const {
+  '1': 'CardCommentsList',
+  '2': const [
+    const {'1': 'comments', '3': 1, '4': 3, '5': 11, '6': '.Comment', '10': 'comments'},
+  ],
+};
+
+/// Descriptor for `CardCommentsList`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List cardCommentsListDescriptor = $convert.base64Decode('ChBDYXJkQ29tbWVudHNMaXN0EiQKCGNvbW1lbnRzGAEgAygLMgguQ29tbWVudFIIY29tbWVudHM=');
+@$core.Deprecated('Use addCommentToCardRequestDescriptor instead')
+const AddCommentToCardRequest$json = const {
+  '1': 'AddCommentToCardRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+    const {'1': 'content', '3': 2, '4': 1, '5': 9, '10': 'content'},
+  ],
+};
+
+/// Descriptor for `AddCommentToCardRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List addCommentToCardRequestDescriptor = $convert.base64Decode('ChdBZGRDb21tZW50VG9DYXJkUmVxdWVzdBIXCgdjYXJkX2lkGAEgASgEUgZjYXJkSWQSGAoHY29udGVudBgCIAEoCVIHY29udGVudA==');
+@$core.Deprecated('Use addCommentToCardResultDescriptor instead')
+const AddCommentToCardResult$json = const {
+  '1': 'AddCommentToCardResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `AddCommentToCardResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List addCommentToCardResultDescriptor = $convert.base64Decode('ChZBZGRDb21tZW50VG9DYXJkUmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3M=');
+@$core.Deprecated('Use deleteCardCommentRequestDescriptor instead')
+const DeleteCardCommentRequest$json = const {
+  '1': 'DeleteCardCommentRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+    const {'1': 'comment_id', '3': 2, '4': 1, '5': 4, '10': 'commentId'},
+  ],
+};
+
+/// Descriptor for `DeleteCardCommentRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deleteCardCommentRequestDescriptor = $convert.base64Decode('ChhEZWxldGVDYXJkQ29tbWVudFJlcXVlc3QSFwoHY2FyZF9pZBgBIAEoBFIGY2FyZElkEh0KCmNvbW1lbnRfaWQYAiABKARSCWNvbW1lbnRJZA==');
+@$core.Deprecated('Use deleteCardCommentResultDescriptor instead')
+const DeleteCardCommentResult$json = const {
+  '1': 'DeleteCardCommentResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `DeleteCardCommentResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deleteCardCommentResultDescriptor = $convert.base64Decode('ChdEZWxldGVDYXJkQ29tbWVudFJlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNz');
+@$core.Deprecated('Use moveCardToCategoryRequestDescriptor instead')
+const MoveCardToCategoryRequest$json = const {
+  '1': 'MoveCardToCategoryRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+    const {'1': 'category', '3': 2, '4': 1, '5': 14, '6': '.CardCategory', '10': 'category'},
+  ],
+};
+
+/// Descriptor for `MoveCardToCategoryRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List moveCardToCategoryRequestDescriptor = $convert.base64Decode('ChlNb3ZlQ2FyZFRvQ2F0ZWdvcnlSZXF1ZXN0EhcKB2NhcmRfaWQYASABKARSBmNhcmRJZBIpCghjYXRlZ29yeRgCIAEoDjINLkNhcmRDYXRlZ29yeVIIY2F0ZWdvcnk=');
+@$core.Deprecated('Use moveCardToCategoryResultDescriptor instead')
+const MoveCardToCategoryResult$json = const {
+  '1': 'MoveCardToCategoryResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `MoveCardToCategoryResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List moveCardToCategoryResultDescriptor = $convert.base64Decode('ChhNb3ZlQ2FyZFRvQ2F0ZWdvcnlSZXN1bHQSGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2Vzcw==');
+@$core.Deprecated('Use assignCardToUserRequestDescriptor instead')
+const AssignCardToUserRequest$json = const {
+  '1': 'AssignCardToUserRequest',
+  '2': const [
+    const {'1': 'card_id', '3': 1, '4': 1, '5': 4, '10': 'cardId'},
+    const {'1': 'user_id', '3': 2, '4': 1, '5': 4, '10': 'userId'},
+  ],
+};
+
+/// Descriptor for `AssignCardToUserRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List assignCardToUserRequestDescriptor = $convert.base64Decode('ChdBc3NpZ25DYXJkVG9Vc2VyUmVxdWVzdBIXCgdjYXJkX2lkGAEgASgEUgZjYXJkSWQSFwoHdXNlcl9pZBgCIAEoBFIGdXNlcklk');
+@$core.Deprecated('Use assignCardToUserResultDescriptor instead')
+const AssignCardToUserResult$json = const {
+  '1': 'AssignCardToUserResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `AssignCardToUserResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List assignCardToUserResultDescriptor = $convert.base64Decode('ChZBc3NpZ25DYXJkVG9Vc2VyUmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3M=');
+@$core.Deprecated('Use usersListDescriptor instead')
+const UsersList$json = const {
+  '1': 'UsersList',
+  '2': const [
+    const {'1': 'users', '3': 1, '4': 3, '5': 11, '6': '.User', '10': 'users'},
+  ],
+};
+
+/// Descriptor for `UsersList`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List usersListDescriptor = $convert.base64Decode('CglVc2Vyc0xpc3QSGwoFdXNlcnMYASADKAsyBS5Vc2VyUgV1c2Vycw==');
+@$core.Deprecated('Use userIdRequestDescriptor instead')
+const UserIdRequest$json = const {
+  '1': 'UserIdRequest',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `UserIdRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List userIdRequestDescriptor = $convert.base64Decode('Cg1Vc2VySWRSZXF1ZXN0Eg4KAmlkGAEgASgEUgJpZA==');
+@$core.Deprecated('Use updateUserRequestDescriptor instead')
+const UpdateUserRequest$json = const {
+  '1': 'UpdateUserRequest',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
+    const {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'email', '3': 3, '4': 1, '5': 9, '10': 'email'},
+    const {'1': 'token', '3': 4, '4': 1, '5': 9, '10': 'token'},
+    const {'1': 'isAdmin', '3': 5, '4': 1, '5': 8, '10': 'isAdmin'},
+  ],
+};
+
+/// Descriptor for `UpdateUserRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateUserRequestDescriptor = $convert.base64Decode('ChFVcGRhdGVVc2VyUmVxdWVzdBIOCgJpZBgBIAEoBFICaWQSEgoEbmFtZRgCIAEoCVIEbmFtZRIUCgVlbWFpbBgDIAEoCVIFZW1haWwSFAoFdG9rZW4YBCABKAlSBXRva2VuEhgKB2lzQWRtaW4YBSABKAhSB2lzQWRtaW4=');
+@$core.Deprecated('Use updateUserResultDescriptor instead')
+const UpdateUserResult$json = const {
+  '1': 'UpdateUserResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `UpdateUserResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateUserResultDescriptor = $convert.base64Decode('ChBVcGRhdGVVc2VyUmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3M=');
+@$core.Deprecated('Use deleteUserResultDescriptor instead')
+const DeleteUserResult$json = const {
+  '1': 'DeleteUserResult',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+  ],
+};
+
+/// Descriptor for `DeleteUserResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deleteUserResultDescriptor = $convert.base64Decode('ChBEZWxldGVVc2VyUmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3M=');
