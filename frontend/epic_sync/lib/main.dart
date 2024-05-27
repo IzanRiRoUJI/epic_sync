@@ -11,7 +11,6 @@ import 'package:epic_sync/pages/kanban/roadmap_kanban_board.dart';
 import 'package:epic_sync/pages/login.dart';
 import 'package:epic_sync/pages/management/general_management_board.dart';
 import 'package:epic_sync/pages/stats/stats_board.dart';
-import 'package:epic_sync/providers/auth_provider.dart';
 import 'package:epic_sync/providers/card_provider.dart';
 import 'package:epic_sync/providers/comments_provider.dart';
 import 'package:epic_sync/providers/globals_provider.dart';
@@ -23,7 +22,6 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        Provider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => CardProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
