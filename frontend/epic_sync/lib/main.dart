@@ -1,5 +1,5 @@
-import 'package:epic_sync/pages/management/proyect_management_board%20copy%202.dart';
-import 'package:epic_sync/pages/management/roadmap_management_board%20copy.dart';
+import 'package:epic_sync/pages/management/proyect_management_board.dart';
+import 'package:epic_sync/pages/management/roadmap_management_board.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:epic_sync/auth.dart';
